@@ -1,0 +1,52 @@
+
+https://github.com/AndresRCB/aks-workload-identity/
+
+
+Terraform commands
+terragrunt state rm `terragrunt state list | grep aks_setup`
+terragrunt state rm `terragrunt state list | grep kubernetes_deployment
+terragrunt state rm `terragrunt state list | grep ingress_controller`
+terragrunt state rm 'terragrunt state list | grep kubernetes_service_account'
+
+
+kubectl commands
+
+kubectl get services --namespace kube-system -o wide -w nginx-ingress-controller-ajit
+ kubectl delete pods hello-kubernetes --grace-period=0.
+ 
+kubectl port-forward pod/hello-kubernetes 8080:80
+kubectl -n nginix-ingress port-forward pod/hello-kubernetes 80:8080
+# service Port forward
+kubectl -n nginix-ingress port-forward svc/hello-service 5678:5678
+
+kubectl get ing  -n nginix-ingress
+kubectl describe ingress nginix-ingress-hello -n nginix-ingress
+
+AZ COOMANDS :
+  az resource delete -g <RG-NAME> -n <RESOURCE-NAME> --resource-type "Microsoft.EventGrid/namespaces" --location centraluseuap
+  az lock delete --resource-group "RG_NAME" --name "PreventDestroy"
+
+CREATE SERVICE PRINCIPAL:
+You can create the Service Principal with
+az ad sp create-for-rbac \
+  --role="Contributor" \
+  --scopes="/subscriptions/SUBSCRIPTION_ID"
+
+az aks show --resource-group test-musea2-rg --name test-ajit-musea2-aks  -o table 
+az aks show --resource-group test-ajit--rg --name test-ajit-musea2-aks --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o table
+
+Useful links:
+https://docs.microsoft.com/en-us/azure/aks/ingress-basic?tabs=azure-cli
+https://docs.microsoft.com/en-us/azure/aks/api-server-authorized-ip-ranges
+https://docs.microsoft.com/en-us/azure/application-gateway/ingress-controller-overview
+
+connect to VM via Bastion:
+az network bastion ssh --name "vm-bas001" --resource-group "<rg-name" --target-resource-id "/subscriptions/*****-****-****-***-*****/resourceGroups/<rg_name>/providers/Microsoft.Compute/virtualMachines/a<lin_vm_name>" --auth-type "ssh-key" --username "azureuser" --ssh-key "C:\Users\***\Desktop\key.pem" 
+//windows 
+
+az network bastion ssh --name "vm-bas001" --resource-group "rg-rg001" --target-resource-id "/subscriptions/subscription_id/resourceGroups/resource-rg/providers/Microsoft.Compute/virtualMachines/windows-vm-name" --auth-type "ssh-key" --username "azureuser" --ssh-key "C:\Users\****\Desktop\key.pem"  
+
+
+
+
+  
